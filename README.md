@@ -2,6 +2,8 @@
 
 Switch branches for the required day...
 
+## February 22, 2021, Monday
+
 ## Homework
 
 Go over all questions (q1,q2,q3) and MR them to Day02 branch and have RD do a code review.
