@@ -1,50 +1,37 @@
-  /**
-   * Async array.
-   */
-  function AsyncArray(arr) {
-    this._arr = arr;
-    this.length = arr.length;
-  }
-  
-  /**
-   * Asynchronously get the array item of the
-   * given index.
-   * @param {number} index - array index of the desired item
-   * @param {function} callback - called with the array item
-   */
-  AsyncArray.prototype.get = function get(index, callback) {
-    setTimeout(callback, 0, this._arr[index]);
-  };
-  
-  
-  /**
-   * Async version of Array.prototype.map.
-   * @param {AsyncArray} arr
-   * @param {function} fn - (item: any) => any
-   * @returns {Promise<AsyncArray>}
-   */
-  function asyncMap(arr, fn) {
-    // Implement this
-  }
-
-  /**
-   * Async version of Array.prototype.reduce.
-   * @param {AsyncArray} arr
-   * @param {function} fn - (val: any, item: any) => any
-   * @returns {Promise<any>}
-   */
-  function asyncReduce(arr, fn, initVal) {
-    // Implement this
-  }
-
-    const arr = new AsyncArray([1, 2, 3]);
-  
-  // arr.get(1, item => console.log(item)); // Existing - Prints 2
-  
-  // Expected result: [2, 4, 6];
-  // asyncMap(arr, x => x * 2).then(arr_ => console.log('asyncMap:', arr_));
-
-  // Expected result: 106
-  // asyncReduce(arr, (v, x) => v + x, 100).then(val => console.log('asyncReduce:', val));
-
-
+/* Implement the function asyncMap:
+ *
+ * asyncMap has two parameters, an array of asynchronous functions (tasks) and a callback.
+ * Each of the tasks takes a separate callback and invokes that callback when complete.
+ *
+ * The callback passed to asyncMap is then performed on the results of the callbacks of the tasks.
+ *
+ * The order of these results should be the same as the order of the tasks.
+ * It is important to note that this is not the order in which the tasks return,
+ * but the order in which they are passed to asyncMap.
+ *
+ * Once all the callbacks of the tasks are returned, asyncMap should invoke the callback
+ * on the results array.
+ *
+ *
+ * Example:
+ *
+ * asyncMap([
+ *  function(cb){
+ *    setTimeout(function(){
+ *      cb('one');
+ *    }, 200);
+ *  },
+ *  function(cb){
+ *    setTimeout(function(){
+ *      cb('two');
+ *    }, 100);
+ *  }
+ * ],
+ *  function(results){
+ *    // the results array will equal ['one','two'] even though
+ *    // the second function had a shorter timeout.
+ *    console.log(results); // ['one', 'two']
+ * });
+ *
+ *
+ */
