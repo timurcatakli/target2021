@@ -1,52 +1,56 @@
-const { document: document2 } = new JSDOM(`
-    <div id="root2">
-      <div class="a" id="a-1">
-        <div class="b" id="b-1">
-          <div class="c" id="c-1"></div>
-          <div class="c" id="c-2"></div>
-        </div>
-      </div>
-    </div>
-`).window;
+function myStringify(obj) {
+  if (Array.isArray(obj)) {
+    // or obj.constructor === Array
+    return (
+      "[" +
+      obj.map((val) => {
+        // We use map here instead of forEach since they return.
+        return myStringify(val);
+      }) +
+      "]"
+    );
+  } else if (!Array.isArray(obj) && typeof obj == "object") {
+    if (obj === null || obj === undefined) return String(obj);
 
-// Helper function to make output easier to read
-const getIds = (elements = []) => Array.from(elements).map((x) => x.id);
+    return (
+      "{" +
+      Object.keys(obj).map((key, i) => {
+        return `"${key}":${myStringify(obj[key])}`;
+      }) +
+      "}"
+    );
+  } else if (typeof obj == "number") {
+    return obj;
+  } else {
+    // string
+    return `"${obj}"`;
+  }
+}
 
-/**
- * Return all DOM elements who are _leaf_nodes_ that satisfy the hierarchy.
- * Hierarchy is a string of class names separated by `>`, akin to
- * CSS CHILD SELECTORS.
- *
- * ex. getByClassnameHierarchy(#root, 'a>b>c') -> [<div class="c" id="c-1"></div>,<div class="c" id="c-2"></div> ]
- * "give me all the elements with class name 'c', who have a strict parent with
- * class name 'b', who have a strict parent with class name 'a'"
- *
- * @param root DOMElement: start the search from this DOM element
- * @param hierarchy string: `>`-delimited string of classnames
- * @return Array<DOMElement>: all DOM elements that satisfy the target hierarchy
- */
+// console.log("=== Object ===")
+// console.log(myStringify({}));
+console.log(myStringify({ x: 5, y: "6" }));
+console.log(JSON.stringify({ x: 5, y: "6" }));
 
-function getByClassnameHierarchy(root, hierarchy) {}
+// console.log("=== Array ===")
+// console.log(myStringify([1,"a"]));
+// console.log(JSON.stringify([1,"a"]));
+// var input = {
+//     "a": 1,
+//     "b": 'text',
+//     "c": {
+//         "x": 1,
+//         "y": {
+//             "x": 2
+//         }
+//     },
+//     "d": false,
+//     "e": null,
+//     "f": undefined,
+//     "g": [1, "text", {
+//         a: 1,
+//         b: 2
+//     }, null]
+// };
 
-const root2 = document2.getElementById("root2");
-
-// basic case:
-console.log("actual: ", getIds(getByClassnameHierarchy(root2, "a>b>c"))); // Similar to QuerySelectorAll
-console.log(`a>b>c expected:`, `['c-1', 'c-2']`, "\n");
-
-// console.log('actual: ', getIds(getByClassnameHierarchy(root2, 'a>b')));
-// console.log(`a>b expected:` , `['b-1']`, '\n');
-
-// // order matters!:
-// console.log('actual: ', getIds(getByClassnameHierarchy(root2, 'b>a')));
-// console.log(`b>a expected:` , `[]`, '\n');
-
-// // gaps in the selector shouldn't return anything:
-// console.log('actual: ', getIds(getByClassnameHierarchy(root2, 'a>c')));
-// console.log(`a>c expected:` , `[]`, '\n');
-
-// console.log('actual: ', getIds(getByClassnameHierarchy(root2, 'd>a>b>c')));
-// console.log(`d>a>b>c expected:` , `[]`, '\n');
-
-// console.log('actual: ', getIds(getByClassnameHierarchy(root2, 'c')));
-// console.log(`c expected:` , `['c-1', 'c-2']`, '\n');
+// console.log(myStringify(input));
