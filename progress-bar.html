@@ -1,0 +1,57 @@
+<html>
+  <head> </head>
+  <body>
+    <button id="start">ADD +</button>
+    <div id="progress-bars" />
+    <script>
+      class ProgressBar {
+        constructor() {
+          this.queue = [];
+          this.available = true;
+        }
+
+        run = () => {
+          if (this.queue.length && this.available) {
+            const nextElem = this.queue.shift();
+            this.available = false;
+            requestAnimationFrame((time) => this.start(time, nextElem, 0));
+          }
+        };
+
+        start = (time, elem, progress) => {
+          progress += 5;
+          elem.style.width = `${progress}px`;
+          if (progress <= 300) {
+            requestAnimationFrame(() => this.start(time, elem, progress));
+          } else {
+            this.available = true;
+            this.run();
+          }
+        };
+
+        add = () => {
+          //   console.log("add");
+          const container = document.createElement("div");
+          const inner = document.createElement("div");
+          container.appendChild(inner);
+          container.style.width = "300px";
+          container.style.height = "20px";
+          container.style.backgroundColor = "tomato";
+          container.style.margin = "10px 0";
+
+          inner.style.width = 0;
+          inner.style.height = "20px";
+          inner.style.backgroundColor = "gray";
+          const progressBars = document.getElementById("progress-bars");
+          progressBars.appendChild(container);
+          this.queue.push(inner);
+          this.run();
+        };
+      }
+
+      const p1 = new ProgressBar();
+      const button = document.getElementById("start");
+      button.addEventListener("click", p1.add);
+    </script>
+  </body>
+</html>
