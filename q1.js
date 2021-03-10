@@ -1,28 +1,38 @@
-/**
- * Given a function and a number x, return a function that can be called X number of times.
- */
+function A() {
+  this.firstName = "Foo";
+}
 
-function times(fn, x) {}
-
-const return1 = function () {
-  return 1;
+A.prototype.print = function () {
+  console.log(this.firstName, this.lastName);
 };
-const return1Twice = times(return1, 2);
 
-console.log("== EXAMPLE 1 OUTPUT ==");
-console.log(return1Twice()); // 1
-console.log(return1Twice()); // 1
-console.log(return1Twice()); // undefined
-console.log("======================");
+function B() {
+  Object.getPrototypeOf(B.prototype).constructor.call(this); // super()
+  this.lastName = "Bar";
+}
 
-const returnY = function (y) {
-  return y;
-};
-const returnYThrice = times(returnY, 3);
+// Class B Extends A connection
+B.prototype = Object.create(A.prototype);
+// Homework: Knowing the difference between New vs Object.create
 
-console.log("== EXAMPLE 2 OUTPUT ==");
-console.log(returnYThrice(1)); // 1
-console.log(returnYThrice(2)); // 2
-console.log(returnYThrice(4)); // 4
-console.log(returnYThrice(6)); // undefined
-console.log("======================");
+// class A {
+//   constructor() {
+//     this.firstName = "Foo"
+//   }
+
+//   print() {
+//     console.log(this.firstName , this.lastName)
+//   }
+// }
+
+// class B extends A {
+//   constructor() {
+//     super()
+//     this.lastName = "Bar"
+//   }
+// }
+
+let a = new A();
+let b = new B();
+b.print();
+console.log(b); // __proto__: {}
