@@ -17,3 +17,13 @@
  1, Define the function to solve it with unlimited marbles;
  2, Define the function to solve it with only two marbles;
  *************************************************************/
+// Binary search
+const minTryWithInfiMarbles = n => Math.ceil(Math.log(n));
+
+// Gaussian Sum
+// Say the first floor number we need to start is f, then the equation will be:
+// f + (f -1) + (f - 2) + ... + 2 + 1 >= n
+// which is Gaussian Sum f(f + 1)/2 >= n ---> f^2 + f - 2n >= 0
+// Please read more:
+// https://www.freecodecamp.org/news/how-to-solve-the-google-recruiters-puzzle-about-throwing-eggs-from-a-building-de6e7ef1755d/
+const minTryWithTwoMarbles = n => Math.ceil((Math.sqrt(8 * n + 1) - 1) / 2);
