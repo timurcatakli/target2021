@@ -7,6 +7,6 @@
 5. ✅ 😎 Maximum Subarray - https://leetcode.com/problems/maximum-subarray
 6. ✅ 💩 Maximum Product Subarray - https://leetcode.com/problems/maximum-product-subarray/
 7. 😎 Find Minimum in Rotated Sorted Array - https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
-8. Search in Rotated Sorted Array - https://leetcode.com/problems/search-in-rotated-sorted-array/
+8. 😎 Search in Rotated Sorted Array - https://leetcode.com/problems/search-in-rotated-sorted-array/
 9. ✅ 🤡 3Sum - https://leetcode.com/problems/3sum/
 10. ✅ 🤡 Container With Most Water - https://leetcode.com/problems/container-with-most-water/
