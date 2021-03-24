@@ -9,3 +9,4 @@
 - Calendar - https://codepen.io/timurcat99/pen/VwPYVYb
 - Giphy Image Fetch - https://codepen.io/timurcat99/pen/NWdPvXR
 - Calculator - https://codepen.io/timurcat99/pen/KKaprRj
+- Auto Complete using Trie - https://codepen.io/timurcat99/pen/gOgaLrp
