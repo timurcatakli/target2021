@@ -8,3 +8,4 @@
 - Countdown Timer - https://codepen.io/timurcat99/pen/ExZYPyr
 - Calendar - https://codepen.io/timurcat99/pen/VwPYVYb
 - Giphy Image Fetch - https://codepen.io/timurcat99/pen/NWdPvXR
+- Calculator - https://codepen.io/timurcat99/pen/KKaprRj
